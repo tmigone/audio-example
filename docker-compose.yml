@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+
+  # PulseAudio server
+  audio:
+    build: ./audio
+    privileged: true
+    ports:
+      - 4317:4317
+  
+  # SOX example using TCP socket
+  source:
+    build: ./source

@@ -1,0 +1,6 @@
+
+# Create virtual sink. We'll send audio into this sink from our source container
+load-module module-null-sink sink_name=virtualsink
+
+# Route audio to the default hardware sink, this is only for testing purposes
+load-module module-loopback source=virtualsink.monitor

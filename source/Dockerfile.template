@@ -1,0 +1,14 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian
+WORKDIR /usr/src
+
+# Send audio to 'virtualsink'
+ENV PULSE_SERVER=tcp:audio:4317
+ENV PULSE_SINK=virtualsink
+
+RUN install_packages sox libsox-fmt-pulse
+RUN curl https://www.kozco.com/tech/LRMonoPhase4.wav --silent --output test.wav
+
+COPY start.sh .
+
+#dev-cmd-live=balena-idle
+CMD [ "/bin/bash", "/usr/src/start.sh" ]
